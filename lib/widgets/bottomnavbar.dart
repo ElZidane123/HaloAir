@@ -143,9 +143,9 @@ class _BottomnavbarState extends State<Bottomnavbar> {
                   _notifBadgeCount > 9 ? '9+' : '$_notifBadgeCount',
                   style: const TextStyle(fontSize: 9),
                 ),
-                child: const Icon(Icons.home_outlined),
+                child: const Icon(Icons.home_rounded),
               )
-            : const Icon(Icons.home_outlined),
+            : const Icon(Icons.home_rounded),
         selectedIcon: _notifBadgeCount > 0
             ? Badge(
                 label: Text(
@@ -158,23 +158,23 @@ class _BottomnavbarState extends State<Bottomnavbar> {
         label: 'Home',
       ),
       const NavigationDestination(
-        icon: Icon(Icons.grid_view_outlined),
-        selectedIcon: Icon(Icons.grid_view),
+        icon: Icon(Icons.grid_view_rounded),
+        selectedIcon: Icon(Icons.grid_view_rounded),
         label: 'Layanan',
       ),
       const NavigationDestination(
-        icon: Icon(Icons.people_outline),
-        selectedIcon: Icon(Icons.people),
+        icon: Icon(Icons.people_rounded),
+        selectedIcon: Icon(Icons.people_rounded),
         label: 'Customer',
       ),
       const NavigationDestination(
-        icon: Icon(Icons.assignment_outlined),
-        selectedIcon: Icon(Icons.assignment),
+        icon: Icon(Icons.assignment_rounded),
+        selectedIcon: Icon(Icons.assignment_rounded),
         label: 'Bill',
       ),
       const NavigationDestination(
-        icon: Icon(Icons.person_outline),
-        selectedIcon: Icon(Icons.person),
+        icon: Icon(Icons.person_rounded),
+        selectedIcon: Icon(Icons.person_rounded),
         label: 'Profile',
       ),
     ];
@@ -199,9 +199,9 @@ class _BottomnavbarState extends State<Bottomnavbar> {
                   _notifBadgeCount > 9 ? '9+' : '$_notifBadgeCount',
                   style: const TextStyle(fontSize: 9),
                 ),
-                child: const Icon(Icons.home_outlined),
+                child: const Icon(Icons.home_rounded),
               )
-            : const Icon(Icons.home_outlined),
+            : const Icon(Icons.home_rounded),
         selectedIcon: _notifBadgeCount > 0
             ? Badge(
                 label: Text(
@@ -214,18 +214,18 @@ class _BottomnavbarState extends State<Bottomnavbar> {
         label: 'Dashboard',
       ),
       NavigationDestination(
-        icon: Icon(Icons.payment_outlined),
-        selectedIcon: Icon(Icons.payment),
+        icon: Icon(Icons.payment_rounded),
+        selectedIcon: Icon(Icons.payment_rounded),
         label: 'Pembayaran',
       ),
       NavigationDestination(
-        icon: Icon(Icons.miscellaneous_services_outlined),
+        icon: Icon(Icons.miscellaneous_services_rounded),
         selectedIcon: Icon(Icons.miscellaneous_services),
         label: 'Layanan',
       ),
       NavigationDestination(
-        icon: Icon(Icons.person_outline),
-        selectedIcon: Icon(Icons.person),
+        icon: Icon(Icons.person_rounded),
+        selectedIcon: Icon(Icons.person_rounded),
         label: 'Profil',
       ),
     ];

@@ -189,7 +189,7 @@ class _LoginState extends State<Login> {
                                   controller: _emailController,
                                   label: 'Username',
                                   hintText: 'Masukkan username Anda',
-                                  prefixIcon: Icons.person_outline_rounded,
+                                  prefixIcon: Icons.person_rounded,
                                   validator: (value) {
                                     if (value == null || value.trim().isEmpty) {
                                       return 'Harap isi kolom ini';
@@ -202,13 +202,13 @@ class _LoginState extends State<Login> {
                                   controller: _passwordController,
                                   label: 'Password',
                                   hintText: 'Masukkan password Anda',
-                                  prefixIcon: Icons.lock_outline_rounded,
+                                  prefixIcon: Icons.lock_rounded,
                                   obscureText: _obscurePassword,
                                   suffixIcon: IconButton(
                                     icon: Icon(
                                       _obscurePassword
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility_outlined,
+                                          ? Icons.visibility_off_rounded
+                                          : Icons.visibility_rounded,
                                       color: const Color(0xFF667085),
                                     ),
                                     onPressed: () {
@@ -319,7 +319,7 @@ class _LoginState extends State<Login> {
                                   color: const Color(0xffCADFFF),
                                 ),
                                 child: const Icon(
-                                  Icons.lock,
+                                  Icons.lock_rounded,
                                   color: Color(0xff266BD3),
                                   size: 30,
                                 ),

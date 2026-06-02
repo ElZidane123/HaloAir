@@ -333,7 +333,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                 'assets/images/Logo.png',
                 height: 38,
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.water,
+                  return const Icon(Icons.water_rounded,
                       color: Color(0xff2768CF), size: 38);
                 },
               ),
@@ -428,7 +428,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                   child: Icon(
                     _notifBadgeCount > 0
                         ? Icons.notifications_active_rounded
-                        : Icons.notifications_none_rounded,
+                        : Icons.notifications_rounded,
                     color: _notifBadgeCount > 0
                         ? const Color(0xffE04F16)
                         : const Color(0xff475467),
@@ -747,7 +747,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                               title: 'Jumlah Customer',
                               value: _formatNumber(_customerCount),
                               subtext: '+32 Customer Baru',
-                              icon: Icons.person,
+                              icon: Icons.person_rounded,
                               iconColor: const Color(0xff2C5EC5),
                               iconBgColor: const Color(0xffEEF4FF),
                             ),
@@ -781,7 +781,7 @@ class _AdminDashboardState extends State<AdminDashboard>
                             child: _buildStatCard(
                               title: 'Total Pendapatan Bulan ini',
                               value: _formatRupiah(_totalRevenue),
-                              icon: Icons.trending_up,
+                              icon: Icons.trending_up_rounded,
                               iconColor: const Color(0xff12B76A),
                               iconBgColor: const Color(0xffECFDF3),
                             ),

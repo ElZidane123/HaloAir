@@ -319,7 +319,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, color: Color(0xffB42318), size: 48),
+            const Icon(Icons.error_rounded, color: Color(0xffB42318), size: 48),
             const SizedBox(height: 12),
             Text(
               _errorMessage,
@@ -351,7 +351,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
   Widget _buildUnpaidTab(double unpaidTotal) {
     if (_unpaidBills.isEmpty) {
       return _buildEmptyState(
-        icon: Icons.check_circle_outline,
+        icon: Icons.check_circle_rounded,
         iconColor: const Color(0xff12B76A),
         message: 'Tidak ada tagihan yang belum dibayar',
         subtitle: 'Semua tagihan Anda sudah lunas 🎉',
@@ -475,7 +475,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                       ),
                       const SizedBox(width: 4),
                       const Icon(
-                        Icons.chevron_right,
+                        Icons.chevron_right_rounded,
                         size: 16,
                         color: Color(0xff667085),
                       ),
@@ -504,7 +504,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                 Row(
                   children: [
                     const Icon(
-                      Icons.calendar_today_outlined,
+                      Icons.calendar_month_rounded,
                       size: 14,
                       color: Color(0xff667085),
                     ),
@@ -523,7 +523,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                   Row(
                     children: [
                       const Icon(
-                        Icons.water_drop_outlined,
+                        Icons.water_drop_rounded,
                         size: 14,
                         color: Color(0xff667085),
                       ),
@@ -542,7 +542,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                 Row(
                   children: [
                     const Icon(
-                      Icons.speed_outlined,
+                      Icons.speed_rounded,
                       size: 14,
                       color: Color(0xff667085),
                     ),
@@ -574,7 +574,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                       child: Row(
                         children: [
                           const Icon(
-                            Icons.cancel_outlined,
+                            Icons.cancel_rounded,
                             size: 16,
                             color: Color(0xffF04438),
                           ),
@@ -605,7 +605,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                       child: Row(
                         children: [
                           const Icon(
-                            Icons.schedule,
+                            Icons.schedule_rounded,
                             size: 16,
                             color: Color(0xffB54708),
                           ),
@@ -632,7 +632,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                     Expanded(
                       child: OutlinedButton.icon(
                         onPressed: () => _showBillDetail(context, bill),
-                        icon: const Icon(Icons.info_outline, size: 16),
+                        icon: const Icon(Icons.info_rounded, size: 16),
                         label: Text(
                           'Detail',
                           style: GoogleFonts.poppins(fontSize: 13),
@@ -652,7 +652,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                       flex: 2,
                       child: ElevatedButton.icon(
                         onPressed: () => _openPaymentSheet(context, bill),
-                        icon: const Icon(Icons.upload_file_outlined, size: 16),
+                        icon: const Icon(Icons.upload_file_rounded, size: 16),
                         label: Text(
                           isPaymentRejected ? 'Upload Ulang' : (hasPendingPayment ? 'Kirim Ulang' : 'Bayar'),
                           style: GoogleFonts.poppins(
@@ -813,13 +813,13 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                   const Divider(height: 1, color: Color(0xffEAECF0)),
                   const SizedBox(height: 8),
                   _infoRow(
-                    icon: Icons.calendar_today_outlined,
+                    icon: Icons.calendar_month_rounded,
                     label: 'Tanggal Bayar',
                     value: _formatDate(payment.paymentDate),
                   ),
                   const SizedBox(height: 6),
                   _infoRow(
-                    icon: Icons.verified_outlined,
+                    icon: Icons.verified_rounded,
                     label: 'Verifikasi',
                     value: payment.verified
                         ? 'Terverifikasi'
@@ -839,7 +839,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                         child: OutlinedButton.icon(
                           onPressed: () =>
                               _showPaymentProof(context, payment.paymentProof),
-                          icon: const Icon(Icons.image_outlined, size: 16),
+                          icon: const Icon(Icons.image_rounded, size: 16),
                           label: Text(
                             'Lihat Bukti',
                             style: GoogleFonts.poppins(fontSize: 12),
@@ -859,7 +859,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                     Expanded(
                       child: OutlinedButton.icon(
                         onPressed: () => _showBillDetail(context, bill),
-                        icon: const Icon(Icons.receipt_outlined, size: 16),
+                        icon: const Icon(Icons.receipt_rounded, size: 16),
                         label: Text(
                           'Detail',
                           style: GoogleFonts.poppins(fontSize: 12),
@@ -1010,7 +1010,7 @@ class _BillState extends State<Bill> with SingleTickerProviderStateMixin {
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(ctx),
-                  icon: const Icon(Icons.close, color: Colors.white),
+                  icon: const Icon(Icons.close_rounded, color: Colors.white),
                 ),
               ],
             ),
@@ -1371,7 +1371,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                       ),
                     ),
                     const Icon(
-                      Icons.calendar_today_outlined,
+                      Icons.calendar_month_rounded,
                       color: Color(0xff2768CF),
                       size: 18,
                     ),
@@ -1505,7 +1505,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
-                              Icons.upload_file_outlined,
+                              Icons.upload_file_rounded,
                               color: Color(0xff2768CF),
                               size: 32,
                             ),
@@ -1538,7 +1538,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
               children: [
                 Expanded(
                   child: _pickerBtn(
-                    Icons.camera_alt_outlined,
+                    Icons.camera_alt_rounded,
                     'Kamera',
                     () => _pickImage(ImageSource.camera),
                   ),
@@ -1546,7 +1546,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: _pickerBtn(
-                    Icons.photo_library_outlined,
+                    Icons.photo_library_rounded,
                     'Galeri',
                     () => _pickImage(ImageSource.gallery),
                   ),
@@ -1569,7 +1569,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.error_outline,
+                      Icons.error_rounded,
                       color: Color(0xffB42318),
                       size: 16,
                     ),
@@ -1659,7 +1659,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(
-                  Icons.camera_alt_outlined,
+                  Icons.camera_alt_rounded,
                   color: Color(0xff2768CF),
                 ),
               ),
@@ -1684,7 +1684,7 @@ class _PaymentUploadSheetState extends State<_PaymentUploadSheet> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(
-                  Icons.photo_library_outlined,
+                  Icons.photo_library_rounded,
                   color: Color(0xff2768CF),
                 ),
               ),
@@ -1820,7 +1820,7 @@ class _BillDetailSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(
-                      Icons.receipt_long,
+                      Icons.receipt_long_rounded,
                       color: Color(0xff2768CF),
                       size: 28,
                     ),
@@ -1939,7 +1939,7 @@ class _BillDetailSheet extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: onPay,
-                  icon: const Icon(Icons.upload_file_outlined),
+                  icon: const Icon(Icons.upload_file_rounded),
                   label: Text(
                     'Upload Bukti Pembayaran',
                     style: GoogleFonts.poppins(

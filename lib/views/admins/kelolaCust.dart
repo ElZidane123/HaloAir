@@ -268,7 +268,7 @@ class _KelolacustState extends State<Kelolacust> {
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.close),
+                            icon: const Icon(Icons.close_rounded),
                             onPressed: () => Navigator.pop(context),
                           ),
                         ],
@@ -290,7 +290,7 @@ class _KelolacustState extends State<Kelolacust> {
                           style: GoogleFonts.poppins(fontSize: 14),
                           decoration: _getInputDecoration(
                             'Username Akun',
-                            Icons.account_circle_outlined,
+                            Icons.account_circle_rounded,
                           ),
                           validator: (value) =>
                               value == null || value.trim().isEmpty
@@ -314,7 +314,7 @@ class _KelolacustState extends State<Kelolacust> {
                           style: GoogleFonts.poppins(fontSize: 14),
                           decoration: _getInputDecoration(
                             'Password Akun',
-                            Icons.lock_outline_rounded,
+                            Icons.lock_rounded,
                           ),
                           validator: (value) =>
                               value == null || value.trim().isEmpty
@@ -362,7 +362,7 @@ class _KelolacustState extends State<Kelolacust> {
                         style: GoogleFonts.poppins(fontSize: 14),
                         decoration: _getInputDecoration(
                           'Nama Lengkap',
-                          Icons.person_outline_rounded,
+                          Icons.person_rounded,
                         ),
                         validator: (value) =>
                             value == null || value.trim().isEmpty
@@ -409,7 +409,7 @@ class _KelolacustState extends State<Kelolacust> {
                         style: GoogleFonts.poppins(fontSize: 14),
                         decoration: _getInputDecoration(
                           'Alamat Lengkap',
-                          Icons.location_on_outlined,
+                          Icons.location_on_rounded,
                         ),
                         validator: (value) =>
                             value == null || value.trim().isEmpty
@@ -736,7 +736,7 @@ class _KelolacustState extends State<Kelolacust> {
                   color: const Color(0xffEBF3FF),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Icon(Icons.person, color: Color(0xff2C5EC5), size: 40),
+                child: const Icon(Icons.person_rounded, color: Color(0xff2C5EC5), size: 40),
               ),
               const SizedBox(height: 12),
               Text(
@@ -768,13 +768,13 @@ class _KelolacustState extends State<Kelolacust> {
               const Divider(height: 1, color: Color(0xffF2F4F7)),
               _detailRow(Icons.phone_android_rounded, 'No. Telepon', customer.phone),
               const Divider(height: 1, color: Color(0xffF2F4F7)),
-              _detailRow(Icons.location_on_outlined, 'Alamat', customer.address),
+              _detailRow(Icons.location_on_rounded, 'Alamat', customer.address),
               const Divider(height: 1, color: Color(0xffF2F4F7)),
               _detailRow(Icons.grid_view_rounded, 'Layanan', customer.serviceName),
               const Divider(height: 1, color: Color(0xffF2F4F7)),
-              _detailRow(Icons.account_circle_outlined, 'Username', customer.username.isNotEmpty ? customer.username : '-'),
+              _detailRow(Icons.account_circle_rounded, 'Username', customer.username.isNotEmpty ? customer.username : '-'),
               const Divider(height: 1, color: Color(0xffF2F4F7)),
-              _detailRow(Icons.calendar_today_outlined, 'Tanggal Daftar', customer.createdAt.isNotEmpty ? customer.createdAt.substring(0, 10) : '-'),
+              _detailRow(Icons.calendar_month_rounded, 'Tanggal Daftar', customer.createdAt.isNotEmpty ? customer.createdAt.substring(0, 10) : '-'),
               const SizedBox(height: 24),
               Row(
                 children: [
@@ -784,7 +784,7 @@ class _KelolacustState extends State<Kelolacust> {
                         Navigator.pop(context);
                         _showCustomerForm(customer: customer);
                       },
-                      icon: const Icon(Icons.edit_outlined, size: 18),
+                      icon: const Icon(Icons.edit_rounded, size: 18),
                       label: Text('Edit', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: const Color(0xff295CD0),
@@ -801,7 +801,7 @@ class _KelolacustState extends State<Kelolacust> {
                         Navigator.pop(context);
                         _confirmDeleteCustomer(customer);
                       },
-                      icon: const Icon(Icons.delete_outline, size: 18),
+                      icon: const Icon(Icons.delete_rounded, size: 18),
                       label: Text('Hapus', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -889,7 +889,7 @@ class _KelolacustState extends State<Kelolacust> {
               color: const Color(0xffEBF3FF),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.person, color: Color(0xff2C5EC5), size: 26),
+            child: const Icon(Icons.person_rounded, color: Color(0xff2C5EC5), size: 26),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -948,7 +948,7 @@ class _KelolacustState extends State<Kelolacust> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert, color: Color(0xff667085)),
+                icon: const Icon(Icons.more_vert_rounded, color: Color(0xff667085)),
                 padding: EdgeInsets.zero,
                 onSelected: (value) {
                   if (value == 'edit') {
@@ -963,7 +963,7 @@ class _KelolacustState extends State<Kelolacust> {
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.edit_outlined,
+                          Icons.edit_rounded,
                           color: Colors.blue,
                           size: 20,
                         ),
@@ -983,7 +983,7 @@ class _KelolacustState extends State<Kelolacust> {
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.delete_outline,
+                          Icons.delete_rounded,
                           color: Colors.red,
                           size: 20,
                         ),
@@ -1038,7 +1038,7 @@ class _KelolacustState extends State<Kelolacust> {
         scrolledUnderElevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black),
           onPressed: () => Navigator.maybePop(context),
         ),
         title: Text(
@@ -1072,7 +1072,7 @@ class _KelolacustState extends State<Kelolacust> {
                             vertical: 14,
                           ),
                           prefixIcon: const Icon(
-                            Icons.search,
+                            Icons.search_rounded,
                             color: Colors.grey,
                             size: 24,
                           ),
@@ -1119,7 +1119,7 @@ class _KelolacustState extends State<Kelolacust> {
                           color: const Color(0xffCADFFF),
                         ),
                         child: const Icon(
-                          Icons.filter_alt_outlined,
+                          Icons.filter_alt_rounded,
                           color: Color(0xff2C5EC5),
                           size: 26,
                         ),
@@ -1143,7 +1143,7 @@ class _KelolacustState extends State<Kelolacust> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.add, color: Colors.white),
+                      const Icon(Icons.add_rounded, color: Colors.white),
                       const SizedBox(width: 8),
                       Text(
                         'Tambah Customer',
@@ -1175,7 +1175,7 @@ class _KelolacustState extends State<Kelolacust> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.layers_clear_outlined,
+                              Icons.layers_clear_rounded,
                               size: 64,
                               color: Colors.grey[400],
                             ),

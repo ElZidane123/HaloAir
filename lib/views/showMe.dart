@@ -416,19 +416,19 @@ class _ShowmeState extends State<Showme> with TickerProviderStateMixin {
 
                 // Info rows
                 _infoRow(
-                  icon: Icons.person_outline_rounded,
+                  icon: Icons.person_rounded,
                   label: 'Username',
                   value: p.user?.username ?? 'N/A',
                 ),
                 _divider(),
                 _infoRow(
-                  icon: Icons.phone_outlined,
+                  icon: Icons.phone_rounded,
                   label: 'Phone Number',
                   value: p.phone,
                 ),
                 _divider(),
                 _infoRow(
-                  icon: Icons.badge_outlined,
+                  icon: Icons.badge_rounded,
                   label: 'User ID',
                   value: '#${p.id}',
                 ),
@@ -440,7 +440,7 @@ class _ShowmeState extends State<Showme> with TickerProviderStateMixin {
                 ),
                 _divider(),
                 _infoRow(
-                  icon: Icons.calendar_today_outlined,
+                  icon: Icons.calendar_month_rounded,
                   label: 'Joined on',
                   value: _formatDate(p.createdAt),
                 ),

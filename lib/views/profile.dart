@@ -119,7 +119,7 @@ class _ProfilState extends State<Profil> {
                   children: [
                     IconButton(
                       icon: const Icon(
-                        Icons.arrow_back,
+                        Icons.arrow_back_rounded,
                         color: Color(0xff091540),
                         size: 24,
                       ),
@@ -173,7 +173,7 @@ class _ProfilState extends State<Profil> {
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
-                        Icons.person,
+                        Icons.person_rounded,
                         color: Color(0xff295CD0),
                         size: 36,
                       ),
@@ -240,7 +240,7 @@ class _ProfilState extends State<Profil> {
                 child: Column(
                   children: [
                     _buildMenuRow(
-                      icon: Icons.person_outline_rounded,
+                      icon: Icons.person_rounded,
                       title: 'Informasi Akun',
                       onTap: () {},
                     ),
@@ -251,7 +251,7 @@ class _ProfilState extends State<Profil> {
                       endIndent: 16,
                     ),
                     _buildMenuRow(
-                      icon: Icons.lock_open_outlined,
+                      icon: Icons.lock_open_rounded,
                       title: 'Ubah Password',
                       onTap: () {},
                     ),
@@ -262,7 +262,7 @@ class _ProfilState extends State<Profil> {
                       endIndent: 16,
                     ),
                     _buildMenuRow(
-                      icon: Icons.notifications_none_outlined,
+                      icon: Icons.notifications_rounded,
                       title: 'Notifikasi',
                       onTap: () {
                         if (_role == 'ADMIN') {
@@ -287,7 +287,7 @@ class _ProfilState extends State<Profil> {
                       endIndent: 16,
                     ),
                     _buildMenuRow(
-                      icon: Icons.info_outline_rounded,
+                      icon: Icons.info_rounded,
                       title: 'Tentang Aplikasi',
                       onTap: () {},
                     ),

@@ -279,7 +279,7 @@ class _HomescreenState extends State<Homescreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.payment, size: 16),
+                          const Icon(Icons.payment_rounded, size: 16),
                           const SizedBox(width: 6),
                           Text(
                             'Bayar Sekarang',
@@ -541,7 +541,7 @@ class _HomescreenState extends State<Homescreen>
                               height: 38,
                               errorBuilder: (context, error, stackTrace) {
                                 return const Icon(
-                                  Icons.water,
+                                  Icons.water_rounded,
                                   color: Color(0xff2768CF),
                                   size: 38,
                                 );
@@ -587,7 +587,7 @@ class _HomescreenState extends State<Homescreen>
                           children: [
                             IconButton(
                               icon: const Icon(
-                                Icons.notifications_none,
+                                Icons.notifications_rounded,
                                 color: Color(0xff667085),
                                 size: 24,
                               ),
@@ -982,7 +982,7 @@ class _HomescreenState extends State<Homescreen>
                                                   child: Row(
                                                     children: [
                                                       const Icon(
-                                                        Icons.info_outline,
+                                                        Icons.info_rounded,
                                                         size: 14,
                                                         color: Color(
                                                           0xffD97706,
@@ -1038,7 +1038,7 @@ class _HomescreenState extends State<Homescreen>
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: _buildStatCard(
-                                    icon: Icons.assignment_turned_in_outlined,
+                                    icon: Icons.assignment_turned_in_rounded,
                                     iconBgColor: const Color(0xffD1FADF),
                                     iconColor: const Color(0xff027A48),
                                     count: paidCount,

@@ -116,25 +116,25 @@ class _LayanancustState extends State<Layanancust>
       return {
         'color': const Color(0xff2768CF),
         'bgColor': const Color(0xffE3EBFD),
-        'icon': Icons.home_outlined,
+        'icon': Icons.home_rounded,
       };
     } else if (nameLower.contains('tangga b')) {
       return {
         'color': const Color(0xff12B76A),
         'bgColor': const Color(0xffECFDF3),
-        'icon': Icons.apartment_outlined,
+        'icon': Icons.apartment_rounded,
       };
     } else if (nameLower.contains('kecil')) {
       return {
         'color': const Color(0xffFFA500),
         'bgColor': const Color(0xffFFF3E0),
-        'icon': Icons.factory_outlined,
+        'icon': Icons.factory_rounded,
       };
     } else {
       return {
         'color': const Color(0xffAB47BC),
         'bgColor': const Color(0xffF3E5F5),
-        'icon': Icons.business_outlined,
+        'icon': Icons.business_rounded,
       };
     }
   }
@@ -184,7 +184,7 @@ class _LayanancustState extends State<Layanancust>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.error_outline,
+              Icons.error_rounded,
               color: Color(0xffB42318),
               size: 48,
             ),
@@ -222,7 +222,7 @@ class _LayanancustState extends State<Layanancust>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.info_outline,
+              Icons.info_rounded,
               color: Color(0xff667085),
               size: 48,
             ),
@@ -284,7 +284,7 @@ class _LayanancustState extends State<Layanancust>
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(
-                      Icons.refresh_outlined,
+                      Icons.refresh_rounded,
                       color: Color(0xff2768CF),
                       size: 20,
                     ),
@@ -390,7 +390,7 @@ class _LayanancustState extends State<Layanancust>
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () => _showDetailBottomSheet(service, style),
-                icon: const Icon(Icons.info_outline, size: 18),
+                icon: const Icon(Icons.info_rounded, size: 18),
                 label: Text(
                   'Lihat Detail Layanan',
                   style: GoogleFonts.poppins(

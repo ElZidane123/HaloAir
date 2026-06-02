@@ -168,7 +168,7 @@ class _SelectRoleState extends State<SelectRole>
                         child: Column(
                           children: [
                             _RoleCard(
-                              icon: Icons.person_outline_rounded,
+                              icon: Icons.person_rounded,
                               title: 'Customer',
                               subtitle: 'Saya ingin menggunakan layanan',
                               filled: true,
@@ -179,7 +179,7 @@ class _SelectRoleState extends State<SelectRole>
                             ),
                             const SizedBox(height: 14),
                             _RoleCard(
-                              icon: Icons.shield_outlined,
+                              icon: Icons.shield_rounded,
                               title: 'Admin',
                               subtitle: 'Saya ingin masuk ke dashboard',
                               filled: false,
@@ -234,17 +234,17 @@ class _SelectRoleState extends State<SelectRole>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _TrustBadge(
-                            icon: Icons.shield_outlined,
+                            icon: Icons.shield_rounded,
                             label: 'Aman',
                           ),
                           _divider(),
                           _TrustBadge(
-                            icon: Icons.flash_on_outlined,
+                            icon: Icons.flash_on_rounded,
                             label: 'Cepat',
                           ),
                           _divider(),
                           _TrustBadge(
-                            icon: Icons.verified_outlined,
+                            icon: Icons.verified_rounded,
                             label: 'Terpercaya',
                           ),
                         ],

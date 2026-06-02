@@ -21,6 +21,75 @@ class _ServiceUIConfig {
     required this.backgroundColor,
     required this.iconColor,
   });
+
+  static const _icons = [
+    Icons.water_drop_rounded,
+    Icons.home_rounded,
+    Icons.storefront_rounded,
+    Icons.domain_rounded,
+    Icons.villa_rounded,
+    Icons.precision_manufacturing_rounded,
+    Icons.hotel_rounded,
+    Icons.school_rounded,
+    Icons.local_hospital_rounded,
+    Icons.account_balance_rounded,
+    Icons.shopping_bag_rounded,
+    Icons.ramen_dining_rounded,
+    Icons.countertops_rounded,
+    Icons.local_laundry_service_rounded,
+    Icons.water_rounded,
+    Icons.forest_rounded,
+    Icons.mosque_rounded,
+    Icons.sports_esports_rounded,
+    Icons.meeting_room_rounded,
+    Icons.chair_rounded,
+    Icons.electric_bolt_rounded,
+    Icons.water_damage_rounded,
+    Icons.plumbing_rounded,
+    Icons.cleaning_services_rounded,
+    Icons.pool_rounded,
+    Icons.spa_rounded,
+  ];
+
+  static const _palette = [
+    _ColorSet(Color(0xffE0F2FE), Color(0xff0369A1)),
+    _ColorSet(Color(0xffDCFCE7), Color(0xff15803D)),
+    _ColorSet(Color(0xffFFF7ED), Color(0xffC2410C)),
+    _ColorSet(Color(0xffEDE9FE), Color(0xff6D28D9)),
+    _ColorSet(Color(0xffFCE4EC), Color(0xffBE185D)),
+    _ColorSet(Color(0xffFEF9C3), Color(0xffA16207)),
+    _ColorSet(Color(0xffE0F2FE), Color(0xff0369A1)),
+    _ColorSet(Color(0xffD1FAE5), Color(0xff047857)),
+    _ColorSet(Color(0xffF3E8FF), Color(0xff7C3AED)),
+    _ColorSet(Color(0xffFFE4E6), Color(0xffBE123C)),
+    _ColorSet(Color(0xffCFFAFE), Color(0xff0E7490)),
+    _ColorSet(Color(0xffFFF1F2), Color(0xffBE185D)),
+    _ColorSet(Color(0xffF5F3FF), Color(0xff4F46E5)),
+    _ColorSet(Color(0xffECFDF5), Color(0xff059669)),
+    _ColorSet(Color(0xffFEF2F2), Color(0xffDC2626)),
+    _ColorSet(Color(0xffEFF6FF), Color(0xff2563EB)),
+    _ColorSet(Color(0xffFDF4FF), Color(0xffC026D3)),
+    _ColorSet(Color(0xffF0FDF4), Color(0xff16A34A)),
+    _ColorSet(Color(0xffFFF7ED), Color(0xffEA580C)),
+    _ColorSet(Color(0xffF8FAFC), Color(0xff475569)),
+  ];
+
+  /// Generate deterministic config from any int seed (uses service id)
+  static _ServiceUIConfig fromSeed(int seed) {
+    final icon = _icons[seed % _icons.length];
+    final colors = _palette[seed % _palette.length];
+    return _ServiceUIConfig(
+      icon: icon,
+      backgroundColor: colors.bg,
+      iconColor: colors.fg,
+    );
+  }
+}
+
+class _ColorSet {
+  final Color bg;
+  final Color fg;
+  const _ColorSet(this.bg, this.fg);
 }
 
 class _LayananadminState extends State<Layananadmin> {
@@ -118,39 +187,9 @@ class _LayananadminState extends State<Layananadmin> {
     );
   }
 
-  _ServiceUIConfig _getServiceConfig(String name) {
-    final lower = name.toLowerCase();
-    if (lower.contains('rumah tangga a') || lower.contains('sosial')) {
-      return _ServiceUIConfig(
-        icon: Icons.home_rounded,
-        backgroundColor: const Color(0xffEBF3FF),
-        iconColor: const Color(0xff2C5EC5),
-      );
-    } else if (lower.contains('rumah tangga b') || lower.contains('rumah tangga')) {
-      return _ServiceUIConfig(
-        icon: Icons.home_rounded,
-        backgroundColor: const Color(0xffE6F7ED),
-        iconColor: const Color(0xff23A154),
-      );
-    } else if (lower.contains('niaga kecil') || lower.contains('toko') || lower.contains('warung')) {
-      return _ServiceUIConfig(
-        icon: Icons.store_rounded,
-        backgroundColor: const Color(0xffFFF4ED),
-        iconColor: const Color(0xffE04F16),
-      );
-    } else if (lower.contains('niaga besar') || lower.contains('industri') || lower.contains('perusahaan')) {
-      return _ServiceUIConfig(
-        icon: Icons.business_rounded,
-        backgroundColor: const Color(0xffF2EFFF),
-        iconColor: const Color(0xff6C5DD3),
-      );
-    } else {
-      return _ServiceUIConfig(
-        icon: Icons.category_rounded,
-        backgroundColor: const Color(0xffEBF3FF),
-        iconColor: const Color(0xff2C5EC5),
-      );
-    }
+  _ServiceUIConfig _getServiceConfig(AdminService service) {
+    // Gunakan id sebagai seed agar icon konsisten per service
+    return _ServiceUIConfig.fromSeed(service.id ?? service.name.hashCode);
   }
 
   void _showSortSheet() {
@@ -265,7 +304,7 @@ class _LayananadminState extends State<Layananadmin> {
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.close),
+                            icon: const Icon(Icons.close_rounded),
                             onPressed: () => Navigator.pop(context),
                           ),
                         ],
@@ -366,7 +405,7 @@ class _LayananadminState extends State<Layananadmin> {
                         controller: priceController,
                         keyboardType: TextInputType.number,
                         style: GoogleFonts.poppins(fontSize: 14),
-                        decoration: _getInputDecoration('Contoh: 75000', Icons.payments_outlined),
+                        decoration: _getInputDecoration('Contoh: 75000', Icons.payments_rounded),
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) return 'Tarif wajib diisi';
                           if (int.tryParse(value) == null) return 'Harus angka';
@@ -580,7 +619,7 @@ class _LayananadminState extends State<Layananadmin> {
   }
 
   void _showServiceDetail(AdminService service) {
-    final config = _getServiceConfig(service.name);
+    final config = _getServiceConfig(service);
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -670,7 +709,7 @@ class _LayananadminState extends State<Layananadmin> {
                         Navigator.pop(context);
                         _showServiceForm(service: service);
                       },
-                      icon: const Icon(Icons.edit_outlined, size: 18),
+                      icon: const Icon(Icons.edit_rounded, size: 18),
                       label: Text('Edit', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: const Color(0xff295CD0),
@@ -687,7 +726,7 @@ class _LayananadminState extends State<Layananadmin> {
                         Navigator.pop(context);
                         _confirmDelete(service);
                       },
-                      icon: const Icon(Icons.delete_outline, size: 18),
+                      icon: const Icon(Icons.delete_rounded, size: 18),
                       label: Text('Hapus', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -732,7 +771,7 @@ class _LayananadminState extends State<Layananadmin> {
   }
 
   Widget _buildServiceCard(AdminService service) {
-    final config = _getServiceConfig(service.name);
+    final config = _getServiceConfig(service);
     return GestureDetector(
       onTap: () => _showServiceDetail(service),
       child: Container(
@@ -807,7 +846,7 @@ class _LayananadminState extends State<Layananadmin> {
             children: [
               PopupMenuButton<String>(
                 icon: const Icon(
-                  Icons.more_vert,
+                  Icons.more_vert_rounded,
                   color: Color(0xff667085),
                 ),
                 padding: EdgeInsets.zero,
@@ -823,7 +862,7 @@ class _LayananadminState extends State<Layananadmin> {
                     value: 'edit',
                     child: Row(
                       children: [
-                        const Icon(Icons.edit_outlined, color: Colors.blue, size: 20),
+                        const Icon(Icons.edit_rounded, color: Colors.blue, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Edit',
@@ -836,7 +875,7 @@ class _LayananadminState extends State<Layananadmin> {
                     value: 'delete',
                     child: Row(
                       children: [
-                        const Icon(Icons.delete_outline, color: Colors.red, size: 20),
+                        const Icon(Icons.delete_rounded, color: Colors.red, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Hapus',
@@ -881,7 +920,7 @@ class _LayananadminState extends State<Layananadmin> {
         scrolledUnderElevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black),
           onPressed: () => Navigator.maybePop(context),
         ),
         title: Text(
@@ -915,7 +954,7 @@ class _LayananadminState extends State<Layananadmin> {
                             vertical: 14,
                           ),
                           prefixIcon: const Icon(
-                            Icons.search,
+                            Icons.search_rounded,
                             color: Colors.grey,
                             size: 24,
                           ),
@@ -962,7 +1001,7 @@ class _LayananadminState extends State<Layananadmin> {
                           color: const Color(0xffCADFFF),
                         ),
                         child: const Icon(
-                          Icons.filter_alt_outlined,
+                          Icons.filter_alt_rounded,
                           color: Color(0xff2C5EC5),
                           size: 26,
                         ),
@@ -986,7 +1025,7 @@ class _LayananadminState extends State<Layananadmin> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.add, color: Colors.white),
+                      const Icon(Icons.add_rounded, color: Colors.white),
                       const SizedBox(width: 8),
                       Text(
                         'Tambah Layanan',
@@ -1017,7 +1056,7 @@ class _LayananadminState extends State<Layananadmin> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.layers_clear_outlined, size: 64, color: Colors.grey[400]),
+                                Icon(Icons.layers_clear_rounded, size: 64, color: Colors.grey[400]),
                                 const SizedBox(height: 12),
                                 Text(
                                   'Tidak ada layanan ditemukan',

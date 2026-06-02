@@ -227,7 +227,7 @@ class _RegisterState extends State<Register> {
                                   controller: nameC,
                                   label: 'Full Name',
                                   hintText: 'Enter your full name',
-                                  prefixIcon: Icons.person_outline_rounded,
+                                  prefixIcon: Icons.person_rounded,
                                   validator: (value) {
                                     if (value == null || value.trim().isEmpty) {
                                       return 'Nama lengkap harus diisi';
@@ -264,7 +264,7 @@ class _RegisterState extends State<Register> {
                                   controller: phoneC,
                                   label: 'Phone Number',
                                   hintText: 'Enter your phone number',
-                                  prefixIcon: Icons.phone_outlined,
+                                  prefixIcon: Icons.phone_rounded,
                                   validator: (value) {
                                     if (value == null || value.trim().isEmpty) {
                                       return 'Nomor telepon harus diisi';
@@ -286,14 +286,14 @@ class _RegisterState extends State<Register> {
                                   controller: passwordC,
                                   label: 'Password',
                                   hintText: 'Enter your password',
-                                  prefixIcon: Icons.lock_outline_rounded,
+                                  prefixIcon: Icons.lock_rounded,
                                   obscureText: !_showPass,
                                   onChanged: _checkStrength,
                                   suffixIcon: IconButton(
                                     icon: Icon(
                                       _showPass
-                                          ? Icons.visibility_outlined
-                                          : Icons.visibility_off_outlined,
+                                          ? Icons.visibility_rounded
+                                          : Icons.visibility_off_rounded,
                                       color: const Color(0xFF667085),
                                     ),
                                     onPressed: () {
@@ -454,7 +454,7 @@ class _RegisterState extends State<Register> {
                                   color: Color(0xffCADFFF),
                                 ),
                                 child: Icon(
-                                  Icons.shield,
+                                  Icons.shield_rounded,
                                   color: Color(0xff266BD3),
                                   size: 30,
                                 ),

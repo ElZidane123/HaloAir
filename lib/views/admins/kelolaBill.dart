@@ -301,7 +301,7 @@ class _KelolaBillState extends State<KelolaBill>
                                       ),
                                     ),
                                     const Icon(
-                                      Icons.calendar_today_outlined,
+                                      Icons.calendar_month_rounded,
                                       color: Color(0xff667085),
                                       size: 18,
                                     ),
@@ -376,7 +376,7 @@ class _KelolaBillState extends State<KelolaBill>
                                       ),
                                     ),
                                     const Icon(
-                                      Icons.calendar_today_outlined,
+                                      Icons.calendar_month_rounded,
                                       color: Color(0xff667085),
                                       size: 18,
                                     ),
@@ -428,7 +428,7 @@ class _KelolaBillState extends State<KelolaBill>
                         ),
                         const Divider(height: 1, color: Color(0xffEAECF0)),
                         _buildStatusRow(
-                          icon: Icons.cloud_upload_outlined,
+                          icon: Icons.cloud_upload_rounded,
                           iconColor: const Color(0xff2F80ED),
                           text: 'Pending Upload',
                           isSelected: tempStatus == 'Pending Upload',
@@ -442,7 +442,7 @@ class _KelolaBillState extends State<KelolaBill>
                         ),
                         const Divider(height: 1, color: Color(0xffEAECF0)),
                         _buildStatusRow(
-                          icon: Icons.check_circle_outline_rounded,
+                          icon: Icons.check_circle_rounded,
                           iconColor: const Color(0xff12B76A),
                           text: 'Sudah Diverifikasi',
                           isSelected: tempStatus == 'Sudah Diverifikasi',
@@ -456,7 +456,7 @@ class _KelolaBillState extends State<KelolaBill>
                         ),
                         const Divider(height: 1, color: Color(0xffEAECF0)),
                         _buildStatusRow(
-                          icon: Icons.cancel_outlined,
+                          icon: Icons.cancel_rounded,
                           iconColor: const Color(0xffF04438),
                           text: 'Ditolak',
                           isSelected: tempStatus == 'Ditolak',
@@ -747,15 +747,15 @@ class _KelolaBillState extends State<KelolaBill>
                   ),
                 ),
                 const SizedBox(height: 20),
-                _billDetailRow(Icons.calendar_month_outlined, 'Periode', bill.period),
+                _billDetailRow(Icons.calendar_month_rounded, 'Periode', bill.period),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
-                _billDetailRow(Icons.speed_outlined, 'No. Meteran', bill.measurementNumber),
+                _billDetailRow(Icons.speed_rounded, 'No. Meteran', bill.measurementNumber),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
-                _billDetailRow(Icons.water_drop_outlined, 'Pemakaian', '${bill.usageValue} m³'),
+                _billDetailRow(Icons.water_drop_rounded, 'Pemakaian', '${bill.usageValue} m³'),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
-                _billDetailRow(Icons.layers_outlined, 'Layanan', bill.service?.name ?? '-'),
+                _billDetailRow(Icons.layers_rounded, 'Layanan', bill.service?.name ?? '-'),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
-                _billDetailRow(Icons.location_on_outlined, 'Alamat', bill.customer?.address ?? '-'),
+                _billDetailRow(Icons.location_on_rounded, 'Alamat', bill.customer?.address ?? '-'),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
                 _billDetailRow(Icons.phone_android_rounded, 'Telepon', bill.customer?.phone ?? '-'),
                 const SizedBox(height: 20),
@@ -767,7 +767,7 @@ class _KelolaBillState extends State<KelolaBill>
                           Navigator.pop(ctx);
                           _showBillForm(bill: bill);
                         },
-                        icon: const Icon(Icons.edit_outlined, size: 18),
+                        icon: const Icon(Icons.edit_rounded, size: 18),
                         label: Text('Edit', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: const Color(0xff295CD0),
@@ -784,7 +784,7 @@ class _KelolaBillState extends State<KelolaBill>
                           Navigator.pop(ctx);
                           _confirmDelete(bill);
                         },
-                        icon: const Icon(Icons.delete_outline, size: 18),
+                        icon: const Icon(Icons.delete_rounded, size: 18),
                         label: Text('Hapus', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.red,
@@ -806,7 +806,7 @@ class _KelolaBillState extends State<KelolaBill>
                             Navigator.pop(ctx);
                             _verifyPayment(bill, true);
                           },
-                          icon: const Icon(Icons.check_circle_outline, size: 18),
+                          icon: const Icon(Icons.check_circle_rounded, size: 18),
                           label: Text('Terima', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xff12B76A),
@@ -824,7 +824,7 @@ class _KelolaBillState extends State<KelolaBill>
                             Navigator.pop(ctx);
                             _verifyPayment(bill, false);
                           },
-                          icon: const Icon(Icons.cancel_outlined, size: 18),
+                          icon: const Icon(Icons.cancel_rounded, size: 18),
                           label: Text('Tolak', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -954,7 +954,7 @@ class _KelolaBillState extends State<KelolaBill>
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.calendar_today_outlined, size: 12, color: Color(0xff98A2B3)),
+                      const Icon(Icons.calendar_month_rounded, size: 12, color: Color(0xff98A2B3)),
                       const SizedBox(width: 4),
                       Text(
                         bill.period,
@@ -1079,7 +1079,7 @@ class _KelolaBillState extends State<KelolaBill>
                     color: const Color(0xffF0F5FF),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.payment, color: Color(0xff295CD0), size: 14),
+                  child: const Icon(Icons.payment_rounded, color: Color(0xff295CD0), size: 14),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -1214,7 +1214,7 @@ class _KelolaBillState extends State<KelolaBill>
                         initialValue: selectedCustomerId,
                         dropdownColor: Colors.white,
                         style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
-                        decoration: _inputDeco('Pilih Customer', Icons.person_outline),
+                        decoration: _inputDeco('Pilih Customer', Icons.person_rounded),
                         items: _customers
                             .map((c) => DropdownMenuItem(
                                   value: c.id,
@@ -1239,7 +1239,7 @@ class _KelolaBillState extends State<KelolaBill>
                                 controller: monthCtrl,
                                 keyboardType: TextInputType.number,
                                 style: GoogleFonts.poppins(fontSize: 14),
-                                decoration: _inputDeco('1 - 12', Icons.calendar_today_outlined),
+                                decoration: _inputDeco('1 - 12', Icons.calendar_month_rounded),
                                 validator: (v) {
                                   final n = int.tryParse(v ?? '');
                                   if (n == null || n < 1 || n > 12) return 'Bulan 1-12';
@@ -1260,7 +1260,7 @@ class _KelolaBillState extends State<KelolaBill>
                                 controller: yearCtrl,
                                 keyboardType: TextInputType.number,
                                 style: GoogleFonts.poppins(fontSize: 14),
-                                decoration: _inputDeco('2025', Icons.date_range_outlined),
+                                decoration: _inputDeco('2025', Icons.date_range_rounded),
                                 validator: (v) {
                                   final n = int.tryParse(v ?? '');
                                   if (n == null || n < 2000) return 'Tahun tidak valid';
@@ -1279,7 +1279,7 @@ class _KelolaBillState extends State<KelolaBill>
                     TextFormField(
                       controller: measureCtrl,
                       style: GoogleFonts.poppins(fontSize: 14),
-                      decoration: _inputDeco('Contoh: MTR-001', Icons.speed_outlined),
+                      decoration: _inputDeco('Contoh: MTR-001', Icons.speed_rounded),
                       validator: (v) => v == null || v.trim().isEmpty ? 'No. meteran wajib diisi' : null,
                     ),
                     const SizedBox(height: 14),
@@ -1290,7 +1290,7 @@ class _KelolaBillState extends State<KelolaBill>
                       controller: usageCtrl,
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       style: GoogleFonts.poppins(fontSize: 14),
-                      decoration: _inputDeco('Contoh: 12.5', Icons.water_drop_outlined),
+                      decoration: _inputDeco('Contoh: 12.5', Icons.water_drop_rounded),
                       validator: (v) {
                         final n = double.tryParse(v ?? '');
                         if (n == null || n < 0) return 'Pemakaian tidak valid';
@@ -1442,7 +1442,7 @@ class _KelolaBillState extends State<KelolaBill>
         scrolledUnderElevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black),
           onPressed: () => Navigator.maybePop(context),
         ),
         title: Text(
@@ -1497,33 +1497,56 @@ class _KelolaBillState extends State<KelolaBill>
         color: const Color(0xff295CD0),
         child: Column(
           children: [
-            // Search bar
+            // Search bar + Filter
             Container(
               color: Colors.white,
               padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-              child: TextFormField(
-                controller: _searchController,
-                onChanged: _applyFilter,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search, color: Colors.grey, size: 22),
-                  hintText: 'Cari invoice atau nama customer...',
-                  hintStyle: GoogleFonts.poppins(fontSize: 13, color: const Color(0xff9EAAD2)),
-                  filled: true,
-                  fillColor: const Color(0xFFF4F7FE),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Color(0xffEEEEEE), width: 1),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: _searchController,
+                      onChanged: _applyFilter,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search_rounded, color: Colors.grey, size: 22),
+                        hintText: 'Cari invoice atau nama customer...',
+                        hintStyle: GoogleFonts.poppins(fontSize: 13, color: const Color(0xff9EAAD2)),
+                        filled: true,
+                        fillColor: const Color(0xFFF4F7FE),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Color(0xffEEEEEE), width: 1),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Color(0xffEEEEEE), width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Color(0xff295CD0), width: 1.5),
+                        ),
+                      ),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Color(0xffEEEEEE), width: 1),
+                  const SizedBox(width: 12),
+                  GestureDetector(
+                    onTap: _showFilterBottomSheet,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffCADFFF),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(
+                        Icons.filter_alt_rounded,
+                        color: Color(0xff2C5EC5),
+                        size: 24,
+                      ),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Color(0xff295CD0), width: 1.5),
-                  ),
-                ),
+                ],
               ),
             ),
 
@@ -1542,7 +1565,7 @@ class _KelolaBillState extends State<KelolaBill>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.add, color: Colors.white, size: 20),
+                      const Icon(Icons.add_rounded, color: Colors.white, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         'Tambah Tagihan',

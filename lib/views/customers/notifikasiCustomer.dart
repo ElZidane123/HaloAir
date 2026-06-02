@@ -149,7 +149,7 @@ class _NotifikasiCustomerState extends State<NotifikasiCustomer> {
                   await _store.clearAll();
                 }
               },
-              icon: const Icon(Icons.delete_sweep_outlined,
+              icon: const Icon(Icons.delete_sweep_rounded,
                   color: Color(0xff667085)),
               tooltip: 'Hapus Semua',
             ),
@@ -166,7 +166,7 @@ class _NotifikasiCustomerState extends State<NotifikasiCustomer> {
                       color: const Color(0xffF2F4F7),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.notifications_off_outlined,
+                    child: Icon(Icons.notifications_off_rounded,
                         size: 48, color: Colors.grey.shade400),
                   ),
                   const SizedBox(height: 20),
@@ -211,7 +211,7 @@ class _NotifikasiCustomerState extends State<NotifikasiCustomer> {
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.only(right: 24),
                       color: Colors.red.shade50,
-                      child: Icon(Icons.delete_outline,
+                      child: Icon(Icons.delete_rounded,
                           color: Colors.red.shade400, size: 24),
                     ),
                     onDismissed: (_) => _store.removeAt(index),
