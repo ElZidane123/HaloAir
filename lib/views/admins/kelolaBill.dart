@@ -5,6 +5,7 @@ import 'package:aplikasi_pdam/models/customer.dart';
 import 'package:aplikasi_pdam/services/kelolaBill.dart';
 import 'package:aplikasi_pdam/services/kelolaCust.dart';
 import 'package:aplikasi_pdam/widgets/alertMassage.dart';
+import 'package:aplikasi_pdam/services/invoicePdf.dart';
 
 class KelolaBill extends StatefulWidget {
   const KelolaBill({super.key});
@@ -654,6 +655,11 @@ class _KelolaBillState extends State<KelolaBill>
     );
   }
 
+  // ==================== PRINT INVOICE ====================
+  Future<void> _printInvoice(Bill bill) async {
+    await InvoicePdfService.showInvoicePreview(context, bill);
+  }
+
   // ==================== DETAIL SHEET ====================
   void _showBillDetail(Bill bill) {
     showModalBottomSheet(
@@ -758,7 +764,23 @@ class _KelolaBillState extends State<KelolaBill>
                 _billDetailRow(Icons.location_on_rounded, 'Alamat', bill.customer?.address ?? '-'),
                 const Divider(height: 1, color: Color(0xffF2F4F7)),
                 _billDetailRow(Icons.phone_android_rounded, 'Telepon', bill.customer?.phone ?? '-'),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: () => _printInvoice(bill),
+                    icon: const Icon(Icons.print_rounded, size: 18),
+                    label: Text('Cetak Invoice', style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xff295CD0),
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(

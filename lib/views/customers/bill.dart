@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:aplikasi_pdam/models/bill.dart' as model;
 import 'package:aplikasi_pdam/services/paymentService.dart';
 import 'package:aplikasi_pdam/services/notificationStore.dart';
+import 'package:aplikasi_pdam/services/invoicePdf.dart';
 
 class Bill extends StatefulWidget {
   const Bill({super.key});
@@ -1931,7 +1932,33 @@ class _BillDetailSheet extends StatelessWidget {
               ],
               _detailRow('Jatuh Tempo', '28 ${bill.monthName} ${bill.year}'),
             ]),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
+
+            // Cetak Invoice button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () => InvoicePdfService.showInvoicePreview(context, bill),
+                icon: const Icon(Icons.print_rounded, size: 18),
+                label: Text(
+                  'Cetak Invoice',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff295CD0),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
 
             // Pay button
             if (onPay != null)

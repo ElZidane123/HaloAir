@@ -854,7 +854,6 @@ class _AdminDashboardState extends State<AdminDashboard>
     required Color iconBgColor,
   }) {
     return Container(
-      height: 110,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -872,7 +871,6 @@ class _AdminDashboardState extends State<AdminDashboard>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
@@ -882,21 +880,18 @@ class _AdminDashboardState extends State<AdminDashboard>
                 ),
                 child: Icon(icon, size: 20, color: iconColor),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  value,
-                  style: GoogleFonts.poppins(
-                    color: const Color(0xff1D2939),
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
             ],
           ),
-          const Spacer(),
+          const SizedBox(height: 10),
+          Text(
+            value,
+            style: GoogleFonts.poppins(
+              color: const Color(0xff1D2939),
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
           Text(
             title,
             style: GoogleFonts.poppins(

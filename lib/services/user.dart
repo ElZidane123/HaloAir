@@ -212,25 +212,26 @@ class UserServices {
         );
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
-      final response = await _dio.get(_adminMeEndpoint);
+      final response = await _dio.get(
+        _adminMeEndpoint,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataMap(
-          success: true,
-          message: response.data['message'] ?? 'Profil berhasil diambil',
-          data: response.data['data'],
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleProfileError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataMap(
+        success: body['success'] == true || response.statusCode == 200,
+        message: body['message']?.toString() ?? 'Profil berhasil diambil',
+        data: body['data'] as Map<String, dynamic>?,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-      return ResponseDataMap(success: false, message: 'Koneksi gagal: ${e.message}');
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
+      return ResponseDataMap(
+        success: false,
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
+      );
+    } catch (e) {
+      return ResponseDataMap(success: false, message: 'Terjadi kesalahan: $e');
     }
   }
 
@@ -246,25 +247,92 @@ class UserServices {
         );
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
-      final response = await _dio.get(_customerMeEndpoint);
+      final response = await _dio.get(
+        _customerMeEndpoint,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataMap(
-          success: true,
-          message: response.data['message'] ?? 'Profil berhasil diambil',
-          data: response.data['data'],
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleProfileError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataMap(
+        success: body['success'] == true || response.statusCode == 200,
+        message: body['message']?.toString() ?? 'Profil berhasil diambil',
+        data: body['data'] as Map<String, dynamic>?,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
+      return ResponseDataMap(
+        success: false,
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
+      );
+    } catch (e) {
+      return ResponseDataMap(success: false, message: 'Terjadi kesalahan: $e');
+    }
+  }
+
+  // ==================== UPDATE PROFILE ====================
+
+  /// Update admin profile. [id] is the admin ID from profile data.
+  Future<ResponseDataMap> updateAdmin(int id, Map<String, dynamic> data) async {
+    try {
+      final token = await _getStoredToken();
+      if (token == null || token.isEmpty) {
+        return ResponseDataMap(success: false, message: 'Token tidak ditemukan');
       }
-      return ResponseDataMap(success: false, message: 'Koneksi gagal: ${e.message}');
+
+      final response = await _dio.patch(
+        '$_adminEndpoint/$id',
+        data: data,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataMap(
+        success: body['success'] == true || response.statusCode == 200,
+        message: body['message']?.toString() ?? 'Profil berhasil diperbarui',
+        data: body['data'] as Map<String, dynamic>?,
+      );
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
+      return ResponseDataMap(
+        success: false,
+        message: e.response?.data?['message']?.toString() ??
+            'Gagal memperbarui profil: ${e.message}',
+      );
+    } catch (e) {
+      return ResponseDataMap(success: false, message: 'Terjadi kesalahan: $e');
+    }
+  }
+
+  /// Update customer profile. [id] is the customer ID from profile data.
+  Future<ResponseDataMap> updateCustomer(int id, Map<String, dynamic> data) async {
+    try {
+      final token = await _getStoredToken();
+      if (token == null || token.isEmpty) {
+        return ResponseDataMap(success: false, message: 'Token tidak ditemukan');
+      }
+
+      final response = await _dio.patch(
+        '$_customerEndpoint/$id',
+        data: data,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataMap(
+        success: body['success'] == true || response.statusCode == 200,
+        message: body['message']?.toString() ?? 'Profil berhasil diperbarui',
+        data: body['data'] as Map<String, dynamic>?,
+      );
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
+      return ResponseDataMap(
+        success: false,
+        message: e.response?.data?['message']?.toString() ??
+            'Gagal memperbarui profil: ${e.message}',
+      );
+    } catch (e) {
+      return ResponseDataMap(success: false, message: 'Terjadi kesalahan: $e');
     }
   }
 

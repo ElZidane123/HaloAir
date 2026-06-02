@@ -1,6 +1,9 @@
+import 'package:aplikasi_pdam/models/responseDataMap.dart';
 import 'package:aplikasi_pdam/views/admins/notifikasiAdmin.dart';
 import 'package:aplikasi_pdam/views/customers/notifikasiCustomer.dart';
 import 'package:aplikasi_pdam/views/login.dart';
+import 'package:aplikasi_pdam/views/informasiAkun.dart';
+import 'package:aplikasi_pdam/services/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +16,8 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
-  String _username = 'Pelanggan';
+  final UserServices _userService = UserServices();
+  String _displayName = '';
   String _role = 'CUSTOMER';
 
   @override
@@ -24,9 +28,23 @@ class _ProfilState extends State<Profil> {
 
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    final role = prefs.getString('role') ?? 'CUSTOMER';
+    _role = role;
+
+    // Fetch profile to get "name"
+    ResponseDataMap res;
+    if (role == 'ADMIN') {
+      res = await _userService.showmeAdmin();
+    } else {
+      res = await _userService.showmeCustomer();
+    }
+
+    if (!mounted) return;
+
     setState(() {
-      _username = prefs.getString('username') ?? 'Pelanggan';
-      _role = prefs.getString('role') ?? 'CUSTOMER';
+      _displayName = res.data?['name']?.toString() ??
+          prefs.getString('username') ??
+          (role == 'ADMIN' ? 'Administrator' : 'Pelanggan');
     });
   }
 
@@ -185,7 +203,7 @@ class _ProfilState extends State<Profil> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            _username,
+                            _displayName,
                             style: GoogleFonts.poppins(
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -205,7 +223,7 @@ class _ProfilState extends State<Profil> {
                           Text(
                             _role == 'ADMIN'
                                 ? 'admin@pdam.co.id'
-                                : '${_username.toLowerCase().replaceAll(' ', '')}@pdam.co.id',
+                                : '${_displayName.toLowerCase().replaceAll(' ', '')}@pdam.co.id',
                             style: GoogleFonts.poppins(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
@@ -242,7 +260,12 @@ class _ProfilState extends State<Profil> {
                     _buildMenuRow(
                       icon: Icons.person_rounded,
                       title: 'Informasi Akun',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const InformasiAkun()),
+                        );
+                      },
                     ),
                     const Divider(
                       height: 1,
