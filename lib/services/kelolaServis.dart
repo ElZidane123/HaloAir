@@ -56,38 +56,31 @@ class KelolaServisService {
         return await _handleUnauthorized();
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
-
       final response = await _dio.post(
         _servicesEndpoint,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
         data: {
           'name': name,
-          'min_usage': minUsage,
-          'max_usage': maxUsage,
-          'price': price,
+          'min_usage': int.tryParse(minUsage) ?? 0,
+          'max_usage': int.tryParse(maxUsage) ?? 0,
+          'price': int.tryParse(price) ?? 0,
         },
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataList(
-          success: response.data['success'] ?? true,
-          message: response.data['message'] ?? 'Servis berhasil dibuat',
-          data: response.data['data'] != null
-              ? [AdminService.fromJson(response.data['data']).toJson()]
-              : null,
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataList(
+        success: body['success'] == true,
+        message: body['message']?.toString() ?? 'Servis berhasil dibuat',
+        data: body['data'] != null
+            ? [(body['data'] is Map ? AdminService.fromJson(body['data'] as Map<String, dynamic>).toJson() : body['data'])]
+            : null,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
       return ResponseDataList(
         success: false,
-        message: 'Koneksi gagal: ${e.message}',
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
       );
     }
   }
@@ -102,36 +95,29 @@ class KelolaServisService {
         return await _handleUnauthorized();
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
+      final response = await _dio.get(
+        _servicesEndpoint,
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
-      final response = await _dio.get(_servicesEndpoint);
+      final body = response.data as Map<String, dynamic>;
+      final List<dynamic> rawList = body['data'] as List<dynamic>? ?? [];
+      final services = rawList
+          .whereType<Map<String, dynamic>>()
+          .map((item) => AdminService.fromJson(item).toJson())
+          .toList();
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<dynamic> dataList = response.data['data'] ?? [];
-        final services = dataList
-            .map(
-              (item) =>
-                  AdminService.fromJson(item as Map<String, dynamic>).toJson(),
-            )
-            .toList();
-
-        return ResponseDataList(
-          success: response.data['success'] ?? true,
-          message: response.data['message'] ?? 'Data servis berhasil diambil',
-          data: services,
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleError(response.data, response.statusCode!);
+      return ResponseDataList(
+        success: body['success'] == true,
+        message: body['message']?.toString() ?? 'Data servis berhasil diambil',
+        data: services,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
       return ResponseDataList(
         success: false,
-        message: 'Koneksi gagal: ${e.message}',
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
       );
     }
   }
@@ -144,30 +130,25 @@ class KelolaServisService {
         return await _handleUnauthorized();
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
+      final response = await _dio.get(
+        '$_servicesEndpoint/$id',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
-      final response = await _dio.get('$_servicesEndpoint/$id');
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataList(
-          success: response.data['success'] ?? true,
-          message: response.data['message'] ?? 'Data servis berhasil diambil',
-          data: response.data['data'] != null
-              ? [AdminService.fromJson(response.data['data']).toJson()]
-              : null,
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataList(
+        success: body['success'] == true,
+        message: body['message']?.toString() ?? 'Data servis berhasil diambil',
+        data: body['data'] != null
+            ? [AdminService.fromJson(body['data'] as Map<String, dynamic>).toJson()]
+            : null,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
       return ResponseDataList(
         success: false,
-        message: 'Koneksi gagal: ${e.message}',
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
       );
     }
   }
@@ -188,38 +169,31 @@ class KelolaServisService {
         return await _handleUnauthorized();
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
-
       final response = await _dio.patch(
         '$_servicesEndpoint/$id',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
         data: {
           'name': name,
-          'min_usage': minUsage,
-          'max_usage': maxUsage,
-          'price': price,
+          'min_usage': int.tryParse(minUsage) ?? 0,
+          'max_usage': int.tryParse(maxUsage) ?? 0,
+          'price': int.tryParse(price) ?? 0,
         },
       );
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataList(
-          success: response.data['success'] ?? true,
-          message: response.data['message'] ?? 'Servis berhasil diperbarui',
-          data: response.data['data'] != null
-              ? [AdminService.fromJson(response.data['data']).toJson()]
-              : null,
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataList(
+        success: body['success'] == true,
+        message: body['message']?.toString() ?? 'Servis berhasil diperbarui',
+        data: body['data'] != null
+            ? [(body['data'] is Map ? AdminService.fromJson(body['data'] as Map<String, dynamic>).toJson() : body['data'])]
+            : null,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
       return ResponseDataList(
         success: false,
-        message: 'Koneksi gagal: ${e.message}',
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
       );
     }
   }
@@ -234,42 +208,26 @@ class KelolaServisService {
         return await _handleUnauthorized();
       }
 
-      _dio.options.headers['Authorization'] = 'Bearer $token';
+      final response = await _dio.delete(
+        '$_servicesEndpoint/$id',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
 
-      final response = await _dio.delete('$_servicesEndpoint/$id');
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return ResponseDataList(
-          success: response.data['success'] ?? true,
-          message: response.data['message'] ?? 'Servis berhasil dihapus',
-          data: response.data['data'],
-        );
-      } else if (response.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
-
-      return _handleError(response.data, response.statusCode!);
+      final body = response.data as Map<String, dynamic>;
+      return ResponseDataList(
+        success: body['success'] == true,
+        message: body['message']?.toString() ?? 'Servis berhasil dihapus',
+        data: body['data'] as List?,
+      );
     } on DioException catch (e) {
-      if (e.response?.statusCode == 401) {
-        return await _handleUnauthorized();
-      }
+      if (e.response?.statusCode == 401) return await _handleUnauthorized();
       return ResponseDataList(
         success: false,
-        message: 'Koneksi gagal: ${e.message}',
+        message: e.response?.data?['message']?.toString() ??
+            'Koneksi gagal: ${e.message}',
       );
     }
   }
 
-  // ==================== ERROR HANDLING ====================
 
-  /// Handle error response
-  ResponseDataList _handleError(Map<String, dynamic> response, int statusCode) {
-    final message = response['message'];
-    return ResponseDataList(
-      success: false,
-      message: message is List
-          ? message.join(', ')
-          : (message ?? 'Operasi gagal ($statusCode)'),
-    );
-  }
 }

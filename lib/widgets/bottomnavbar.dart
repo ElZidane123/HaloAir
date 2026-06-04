@@ -92,7 +92,7 @@ class _BottomnavbarState extends State<Bottomnavbar> {
               );
             }
             return GoogleFonts.poppins(
-              color: const Color(0xff98A2B3),
+              color: Color(0xff98A2B3),
               fontSize: 11,
               fontWeight: FontWeight.w400,
             );
@@ -123,14 +123,13 @@ class _BottomnavbarState extends State<Bottomnavbar> {
     );
   }
 
-  // ==================== ADMIN PAGES ====================
   List<Widget> _getAdminPages() {
-    return [
-      const AdminDashboard(), // Dashboard
-      const Layananadmin(), // Layanan
-      const Kelolacust(), // Customer
-      const KelolaBill(), // Bill
-      const Profil(), // Profil
+    return const [
+      AdminDashboard(),
+      Layananadmin(),
+      Kelolacust(),
+      KelolaBill(),
+      Profil(),
     ];
   }
 
@@ -180,13 +179,12 @@ class _BottomnavbarState extends State<Bottomnavbar> {
     ];
   }
 
-  // ==================== CUSTOMER PAGES ====================
   List<Widget> _getCustomerPages() {
-    return [
-      const Homescreen(), // Dashboard
-      const Bill(), // Pembayaran
-      const Layanancust(), // Layanan
-      const Profil(), // Profil
+    return const [
+      Homescreen(),
+      Bill(),
+      Layanancust(),
+      Profil(),
     ];
   }
 
@@ -213,17 +211,17 @@ class _BottomnavbarState extends State<Bottomnavbar> {
             : const Icon(Icons.home),
         label: 'Dashboard',
       ),
-      NavigationDestination(
+      const NavigationDestination(
         icon: Icon(Icons.payment_rounded),
         selectedIcon: Icon(Icons.payment_rounded),
         label: 'Pembayaran',
       ),
-      NavigationDestination(
+      const NavigationDestination(
         icon: Icon(Icons.miscellaneous_services_rounded),
         selectedIcon: Icon(Icons.miscellaneous_services),
         label: 'Layanan',
       ),
-      NavigationDestination(
+      const NavigationDestination(
         icon: Icon(Icons.person_rounded),
         selectedIcon: Icon(Icons.person_rounded),
         label: 'Profil',
