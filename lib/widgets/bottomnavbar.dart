@@ -107,7 +107,21 @@ class _BottomnavbarState extends State<Bottomnavbar> {
             });
             return true;
           },
-          child: pages[_selectedIndex],
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 250),
+            switchInCurve: Curves.easeInOut,
+            switchOutCurve: Curves.easeInOut,
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            child: KeyedSubtree(
+              key: ValueKey<int>(_selectedIndex),
+              child: pages[_selectedIndex],
+            ),
+          ),
         ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: _selectedIndex,
